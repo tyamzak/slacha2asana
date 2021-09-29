@@ -22,7 +22,7 @@ client = app.client
 
 
 # 'hello'を含むメッセージをリッスンします
-
+# 指定可能なリスナーのメソッドの引数の一覧は以下を参考に
 
 @app.message("hello")
 def message_hello(message, say, ack):
@@ -136,10 +136,6 @@ def tehepero(ack, body, logger):
     app.client.conversations_archive(
         channel=channel_del
     )
-
-
-def asana_upload():
-    return
 
 
 def airtable_upload(kaishi='', note='', attach='', channel='', key='', table_name='記録'):
