@@ -162,6 +162,47 @@ def airtable_upload(kaishi='', note='', attach='', channel='', key='', table_nam
     r = airtable.insert(record, typecast=True)
     return r
 
+# replace withuyour personal access token.
+personal_access_token = '1/1201052327944929:f7e1d98e50cea2663998df60f3ba73ca'
+
+
+
+def asana_upload():
+    
+# Construct an Asana client
+client = asana.Client.access_token(personal_access_token)
+#client = asana.Client.oauth(
+#        client_id='clientid',
+#        client_secret='clientsecret',
+import asana
+#from .gen.attachments import _Attachments
+clientid = os.environ.get('ASANA_CLIENT_ID')
+clientsecret = os.environ.get('ASANA_CLIENT_SECRET')
+# replace withuyour personal access token.
+personal_access_token = os.environ.get('ASANA_PERSONAL_ACCESS')
+# Construct an Asana client
+client = asana.Client.access_token(personal_access_token)
+#client = asana.Client.oauth(
+#        client_id='clientid',
+#        client_secret='clientsecret',
+#        redirect_uri='urn:ietf:wg:oauth:2.0:oob'
+#        )
+(url, state) = client.session.authorization_url()
+#if request.params['state'] == state:
+#  token = client.session.fetch_token(code=request.params['code'])
+  # ...
+#else:
+  # error! possible CSRF attack
+# Set things up to send the name of this script to us to show that you succeeded! This is optional.
+#client.options['client_name'] = "ReportManager"
+# Get your user info
+#me = client.users.me()
+# Print out your information
+#print("Hello world! " + "My name is " + me['name'] + "!")
+task_gid = '1201052281703499'
+attachment_gid = '1201052281703503'
+#result = client.attachments.delete_attachment(task_gid,opt_pretty=True)
+result = client.attachments.create_on_task(task_id=task_gid,file_content=open('/tmp/videos/anomaly.gif', 'rb'),file_name='    testgif.gif',file_content_type="image/gif")
 
 # アプリを起動します
 if __name__ == "__main__":
